@@ -5,15 +5,17 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const reportRoutes = require("./routes/reportRoutes"); // Import the report route
 
+app.options("*", cors()); // Allow preflight (OPTIONS) requests
+
 const app = express();
 const port = 5000;
 
 // Enable CORS with specific frontend origin
 app.use(
   cors({
-    origin: "https://bestbitcoincasinos-1.onrender.com", // Your React frontend URL
-    methods: "GET, POST", // Allow specific HTTP methods
-    allowedHeaders: "Content-Type,Authorization", // Allowed headers for the request
+    origin: "https://bestbitcoincasinos-1.onrender.com", // Allow only your frontend
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
