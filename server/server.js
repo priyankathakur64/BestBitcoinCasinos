@@ -5,8 +5,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const reportRoutes = require("./routes/reportRoutes"); // Import the report route
 
-app.options("*", cors()); // Allow preflight (OPTIONS) requests
-
 const app = express();
 const port = 5000;
 
@@ -20,7 +18,7 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
+app.options("*", cors()); // Allow preflight (OPTIONS) requests
 // Use the report routes for handling `/api/report/*` requests
 app.use("/api/report", reportRoutes);
 
