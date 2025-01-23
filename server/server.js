@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -7,7 +8,15 @@ const reportRoutes = require("./routes/reportRoutes"); // Import the report rout
 const app = express();
 const port = 5000;
 
-app.use(cors());
+// Enable CORS with specific frontend origin
+app.use(
+  cors({
+    origin: "https://bestbitcoincasinos-1.onrender.com", // Your React frontend URL
+    methods: "GET, POST", // Allow specific HTTP methods
+    allowedHeaders: "Content-Type,Authorization", // Allowed headers for the request
+  })
+);
+
 app.use(bodyParser.json());
 
 // Use the report routes for handling `/api/report/*` requests
